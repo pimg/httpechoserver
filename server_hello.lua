@@ -15,7 +15,7 @@ local cjson = require "cjson"
 local signal = require("posix.signal")
 
 local function createQueryParamTable (path)
-	query_tbl = {}
+	local query_tbl = {}
 
 	local seperator = path:find("?")
 
@@ -23,8 +23,8 @@ local function createQueryParamTable (path)
 		return path, {};
 	end
 
-	query_str = path:sub(seperator+1)
-	path_str = path:sub(0, seperator - 1)
+	local query_str = path:sub(seperator+1)
+	local path_str = path:sub(0, seperator - 1)
 
 	for name, value in http_util.query_args(query_str) do
 		query_tbl[name] = value
